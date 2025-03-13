@@ -5,7 +5,8 @@ let sorting = document.getElementById('sorting-list');
 function add() {
  
     let friendsName = document.getElementById('friends-name').value;
-    
+    let friendsNameField = document.getElementById('friends-name');
+
     if (friendsName == '') {
         alert('Please type a name');
         return;
@@ -13,11 +14,7 @@ function add() {
 
     friendsList.push(friendsName);
     friendsListField.innerText = friendsList;
-
-
-    
-    // add clear field when a name is added
-    // add spaces between names on friend's list field
+    friendsNameField.value = '';
 }
 
 drawn = [];
@@ -26,11 +23,12 @@ function randomDrawn() {
     
     for (let i = 0; i < friendsList.length; i++) {
         let sorteado = friendsList[parseInt(Math.random() * friendsList.length)];
-        if (drawn.includes(sorteado)) {
+        if (!drawn.includes(sorteado)) {
+        drawn.push(sorteado);
+        }else {
             friendsList[parseInt(Math.random() * friendsList.length)];
-        } else {
-            drawn.push(sorteado);
         }
+           
     }
 }
 // loop nao esta sorteando valored diferentes do que ja esta no array drawn
